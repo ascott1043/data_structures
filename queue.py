@@ -32,7 +32,7 @@ class Queue:
     
 
 if __name__ == '__main__':
-
+    pass
     #       using array:
     # queue = []
     # queue.insert(0,131.10)
