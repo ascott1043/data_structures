@@ -70,20 +70,15 @@ class HashTable:
 
 if __name__ == '__main__':
     t = HashTable()
-    c = ''
-    l = []
-    for i in range(1):
-        c += '2'
-        l.append(c)
-    for entry in l:
-        t[entry] = 1
 
     t['one'] = 1
     t['22'] = 2
-    t['222'] = 3
+    t['222'] = [1,2,3]
     t['2E'] = 'e'
     t['22U'] = '5'
     t['22K'] = 'K'
-    del t['222']
 
+    print(t['22U'])
+    print(t['doesntexist'])
+    del t['2E']
     print(t.array)
