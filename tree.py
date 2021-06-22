@@ -18,6 +18,36 @@ class TreeNode:
             node = node.parent
         return current_level
 
+    def get_branch(self):
+        current_node = self
+        branch = current_node.data
+        while current_node.parent:
+            branch = current_node.parent.data + ' > ' + branch
+            current_node = current_node.parent
+        
+
+    def find_parent(self):
+        current_node = self
+        if current_node.parent:
+            while current_node.parent:
+                current_node = current_node.parent
+            return current_node
+        return "Already at highest level"
+
+    def find_value(self, value):
+        node = self
+        branch = None
+        if node.data.lower() == value.lower():
+            branch = node.get_branch()
+
+        for child in node.children:
+            branch = child.find_value(value)
+
+        if branch:
+            return branch
+
+        return f"Couldn't find value {value} in tree"
+
     def __str__(self):
         tree = self.data
         tree += '\n'
@@ -122,12 +152,13 @@ def build_geo_tree():
 
 
 if __name__ == '__main__':
-    root = build_product_tree()
-    print(root)
+    # root = build_product_tree()
+    # print(root)
 
-    root = build_company_org_tree()
-    print(root.print_org('both'))
+    # root = build_company_org_tree()
+    # print(root.print_org('both'))
 
 
     root = build_geo_tree()
-    print(root.print_geo(3))
+    print(root)
+    print(root.find_value('India'))
