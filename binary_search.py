@@ -33,7 +33,6 @@ def binary_search(nbrs, nbr_to_find):
 
     return (-1, iterations)
 
-@time_it
 def binary_search_recursive(nbrs, nbr_to_find, left_index, right_index, iterations=1):
     if right_index < left_index:
         return (-1, iterations)
@@ -66,16 +65,15 @@ def multiple_indexes(nbrs, nbr_to_find):
         mid_nbr = nbrs[mid_index]
 
         if mid_nbr == nbr_to_find:
-            indexes = [mid_index]
-            #Find matching nbrs to right:
-            indexes = find_right(nbrs, mid_index, indexes)
+            right = find_right(nbrs, mid_index, [])
+            left = find_left(nbrs, mid_index, [])
+            indexes = left + [mid_index] + right
 
-            #Find matching nbrs to left
-            indexes = find_left(nbrs, mid_index, indexes)
-
+            #return as int instead of list if there is just one value
             if len(indexes) == 1:
                 return indexes[0]
             return indexes
+
         if mid_nbr > nbr_to_find:
             right_index = mid_index - 1
         if mid_nbr < nbr_to_find:
@@ -111,8 +109,9 @@ if __name__ == '__main__':
 
     print("Random nbr: ", nbr_to_find)
     print(linear_search(nbrs, nbr_to_find))
+
     print(binary_search(nbrs, nbr_to_find))
-    print(binary_search_recursive(nbrs, nbr_to_find, 0, len(nbrs)))
+    print("recursive: ", binary_search_recursive(nbrs, nbr_to_find, 0, len(nbrs)))
 
     nbrs = [1, 4, 6, 9,11,15,15,15,17,21,34,34,56]
     nbr_to_find = 15
