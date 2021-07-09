@@ -1,11 +1,3 @@
-
-def find_min_element(arr):
-    min = 1000000000
-    for i in range(len(arr)):
-        if arr[i] < min:
-            min = arr[i]
-    return min
-
 def selection_sort(arr):
     size = len(arr)
     for i in range(size-1):
@@ -16,20 +8,6 @@ def selection_sort(arr):
     
         if i != min_index:
             arr[i], arr[min_index] = arr[min_index], arr[i]
-
-def selection_sort_multi(arr, key1, key2):
-    size = len(arr)
-    for i in range(size-1):
-        min_index = i
-        for j in range(min_index+1, size):
-            if arr[j][key1] == arr[min_index][key1]:
-                if arr[j][key2] < arr[min_index][key2]:
-                    min_index = j
-            if arr[j][key1] < arr[min_index][key1]:
-                min_index = j
-
-        if i != min_index:
-            arr[i], arr[min_index] = arr[min_index],arr[i]
 
 def multi_selection_sort_codebasics(arr, sort_by_list):
     for key in sort_by_list[-1::-1]:
@@ -67,7 +45,10 @@ if __name__ == '__main__':
     {'First Name': 'Aahana', 'Last Name': 'Arora'}
     ]
 
-    selection_sort_multi(elements, 'First Name','Last Name')
+    # selection_sort_multi(elements, 'First Name','Last Name')
+    # for i in elements:
+    #     print(i)
+
+    multi_selection_sort_codebasics(elements, ['First Name','Last Name'])
     for i in elements:
         print(i)
-            
